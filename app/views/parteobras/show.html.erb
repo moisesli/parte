@@ -1,0 +1,156 @@
+<ul class="breadcrumb">
+  <li><i class="icon-home"></i> <%= link_to "Parte Obras", root_path %> <span>/</span></li>  
+  <li class="active">Detalle</li>
+</ul>
+
+<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1><%= @parteobra.frente %> <small><%= @parteobra.fechaingreso.strftime("%d %b. %Y") %></small></h1>
+</div>
+
+<p>
+  <b>Frente</b> : <%= @parteobra.frente %>
+</p>
+<p>
+  <b>Jefe Frente</b> : <%= @parteobra.jefefrente %>
+</p>
+<p>
+  <b>Maestro de Obra</b> : <%= @parteobra.maestrodeobra %>
+</p>
+
+<p>
+  <b>Casa:</b>
+  <%= @parteobra.casa %>
+</p>
+
+<p>
+  <b>Subcontratista:</b>
+  <%= @parteobra.subcontratista %>
+</p>
+
+<p>
+  <b>Fechaingreso:</b>
+  <%= @parteobra.fechaingreso.strftime("%d %b. %Y") %>
+</p>
+
+<p>
+  <b>Numeroparte:</b>
+  <%= @parteobra.numeroparte %>
+</p>
+
+<%= image_tag "wbs.png" %>
+
+<!-- Produccion -->
+<hr />
+<h2>Produccion</h2>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>#id</th>
+    <th>Partidas</th>
+    <th>Sn/Pn</th>
+    <th>Profundidad</th>
+    <th>Unidad</th>
+    <th>Metrado</th>
+    <th>Observacion</th>
+  </tr>
+  <% @parteobra.partidas.each do |partida| %>
+  <tr>
+    <td><%= partida.id %></td>
+    <td><%= partida.nombre %></td>
+    <td><%= partida.serieclase %></td>
+    <td><%= partida.profundidad %></td>
+    <td><%= partida.unidad %></td>
+    <td><%= partida.metrado %></td>
+    <td><%= partida.observacion %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+<!-- Descompociciones -->
+<hr />
+<h2>Subcontratos</h2>
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>#Id</th>
+    <th>Descripcion</th>
+    <th>Unidad</th>
+    <th>Cantidad</th>
+    <th>Terreno</th>
+    <th>Cantidad Vales</th>    
+    <th>Observacion</th>
+  </tr>
+  <% @parteobra.descompociciones.each do |descompocicione| %>
+  <tr>
+    <td><%= descompocicione.id %></td>    
+    <td><%= descompocicione.descripcion %></td>
+    <td><%= descompocicione.unidad %></td>
+    <td><%= descompocicione.cantidad %></td>
+    <td><%= descompocicione.terreno %></td>
+    <td><%= descompocicione.cantidadvales %></td>
+    <td><%= descompocicione.observacion %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+<!-- Materiales -->
+<hr />
+<h2>Materiales</h2>
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>#Id</th>
+    <th>Descripcion</th>
+    <th>Unidad</th>
+    <th>Cantidad</th>
+    <th>Partida Control</th>
+    <th>Observacion</th>    
+  </tr>
+  <% @parteobra.materiales.each do |materiale| %>
+  <tr>
+    <td><%= materiale.id %></td>    
+    <td><%= materiale.descripcion %></td>
+    <td><%= materiale.unidad %></td>
+    <td><%= materiale.cantidad %></td>
+    <td><%= materiale.partidacontrol %></td>
+    <td><%= materiale.observacion %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+
+
+
+<!-- Equipos -->
+<hr />
+<h2>Equipos</h2>
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>#Id</th>
+    <th>Descripcion</th>
+    <th>Unidad</th>
+    <th>Cantidad</th>
+    <th>Numero Parte</th>
+    <th>Partida Control</th>
+    <th>Observacion</th>
+  </tr>
+  <% @parteobra.equipos.each do |equipo| %>
+  <tr>
+    <td><%= equipo.id %></td>
+    <td><%= equipo.descripcion %></td>
+    <td><%= equipo.unidad %></td>
+    <td><%= equipo.cantidad %></td>
+    <td><%= equipo.numeroparte %></td>
+    <td><%= equipo.partidacontrol %></td>
+    <td><%= equipo.observacion %></td>
+  </tr>
+  <% end %>
+</table>
+
+<div class="form-actions">
+  <%= link_to raw('<i class="icon-edit icon-white"></i> Editar'), edit_parteobra_path(@parteobra), :class => "btn btn-primary" %>
+  <%= link_to raw('<i class="icon-arrow-left icon-white"></i> Regresar'), parteobras_path, :class => "btn btn-primary" %>  
+</div>
+
+

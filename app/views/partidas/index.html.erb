@@ -1,0 +1,41 @@
+<div class="page-header">
+    <h1>Partidas Registradas :</h1>
+</div>
+
+<%= will_paginate(@partidas, :renderer => WillPaginate::ActionView::LinkRenderer) %>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr>
+    <th>#Id</th>
+    <th>Nombre</th>
+    <th>Diametro</th>
+    <th>Serieclase</th>
+    <th>Profundidad</th>
+    <th>Unidad</th>
+    <th>Metrado</th>
+    <th>Observacion</th>    
+    <th>Acciones</th>
+  </tr>
+
+<% @partidas.each do |partida| %>
+  <tr>
+    <td><%= partida.id %></td>
+    <td><%= partida.nombre %></td>
+    <td><%= partida.diametro %></td>
+    <td><%= partida.serieclase %></td>
+    <td><%= partida.profundidad %></td>
+    <td><%= partida.unidad %></td>
+    <td><%= partida.metrado %></td>
+    <td><%= partida.observacion %></td>
+    <td>        
+        <%= link_to raw('<i class="icon-eye-open"></i>'), partida, :class => "btn" %>
+        <%= link_to raw('<i class="icon-edit"></i>'), edit_partida_path(partida), :class => "btn" %>
+        <%= link_to raw('<i class ="icon-trash"></i>'), partida, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+
+
+

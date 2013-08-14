@@ -1,0 +1,39 @@
+<ul class="breadcrumb">
+  <li><%= link_to "Partidas de Control", partidasdecontrols_path %> <span class="divider">/</span></li>
+  <li class="active">Sub Fases</li>
+</ul>
+
+<div class="page-header">
+  <h1>Lista de Subfases</h1>
+</div>
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>#id</th>
+    <th>Cod Fase</th>
+    <th>Cod Sufase</th>
+    <th>Descripcion</th>
+    <th>Fase</th>
+    <th>Acciones</th>
+  </tr>
+
+<% @subfases.each do |subfase| %>
+  <tr>
+    <td><%= subfase.id %></td>
+    <td><%= subfase.fase.codigo %></td>
+    <td><%= subfase.codigo %></td>
+    <td><%= subfase.descripcion[0,30] %></td>
+    <td><%= subfase.fase.descripcion[0,30] %></td>
+    <td>
+      <%= link_to raw('<i class="icon-eye-open"></i>'), subfase, :class => "btn btn-small" %>
+      <%= link_to raw('<i class="icon-edit"></i>'), edit_subfase_path(subfase), :class => "btn btn-small" %>
+      <%= link_to raw('<i class="icon-trash"></i>'), subfase, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<div class="form-actions">
+  <%= link_to raw('<i class="icon-user icon-white"></i> Nueva'), new_subfase_path, :class => "btn btn-primary" %>
+  <%= link_to raw('<i class="icon-user icon-white"></i> Tipos de Fases'), fases_path, :class => "btn btn-primary" %>
+</div>

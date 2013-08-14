@@ -1,0 +1,5 @@
+<% i = 1 %>
+<% @subfases.each do |subfase| %>
+	<%= i %>  <%= subfase %><br>
+	<% i = i + 1 %>
+<% end %>

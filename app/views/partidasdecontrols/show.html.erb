@@ -1,0 +1,28 @@
+<div class="page-header">
+	<h1><%= @partidasdecontrol.subfase.descripcion %> <small><%= @partidasdecontrol.fase.descripcion %></small></h1>
+</div>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>SECTOR :</b> <%= @partidasdecontrol.sectore.descripcion %>
+</p>
+<p>
+  <b>SUB - SECTOR :</b> <%= @partidasdecontrol.subsectore.descripcion %>
+</p>
+
+<p>
+  <b>FASE :</b>
+  <%= @partidasdecontrol.fase.descripcion %>
+</p>
+
+<p>
+  <b>SUBFASE :</b>
+  <%= @partidasdecontrol.subfase.descripcion %>
+</p>
+
+ 
+<div class="form-actions">
+	<%= link_to raw('<i class="icon-edit icon-white"></i> Edit'), edit_partidasdecontrol_path(@partidasdecontrol), :class => "btn btn-primary" %>
+	<%= link_to raw('<i class="icon-arrow-left icon-white"></i> Regresar'), partidasdecontrols_path, :class => "btn btn-primary" %>	
+</div>
+

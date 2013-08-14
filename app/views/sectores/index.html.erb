@@ -1,0 +1,37 @@
+<ul class="breadcrumb">
+  <li><%= link_to "Partidas de Control", partidasdecontrols_path %> <span class="divider">/</span></li>  
+  <li class="active">Sectores</li>
+</ul>
+
+
+<div class="page-header">
+  <h1>Lista de Sectores</h1>  
+</div>
+
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>#id</th>
+    <th>Codigo</th>
+    <th>Descripcion</th>
+    <th>Acciones</th>
+  </tr>
+
+<% @sectores.each do |sectore| %>
+  <tr>
+    <td><%= sectore.id %></td>
+    <td><%= sectore.codigo %></td>
+    <td><%= sectore.descripcion %></td>
+    <td>
+      <%= link_to raw('<i class="icon-eye-open"></i>'), sectore, :class => "btn btn-small" %>
+      <%= link_to raw('<i class="icon-edit"></i>'), edit_sectore_path(sectore), :class => "btn btn-small" %>
+      <%= link_to raw('<i class="icon-trash"></i>'), sectore, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<div class="form-actions">
+  <%= link_to raw('<i class="icon-user icon-white"></i> Nuevo Sector'), new_sectore_path, :class => "btn btn-primary" %>  
+</div>
+

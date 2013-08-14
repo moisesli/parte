@@ -1,0 +1,38 @@
+<div class="page-header">
+    <h1>Materiales Registrados :</h1>    
+</div>
+
+<%= will_paginate(@materiales, :renderer => WillPaginate::ActionView::LinkRenderer) %>
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>#Id</th>
+    <th>Descripcion</th>
+    <th>Unidad</th>
+    <th>Cantidad</th>
+    <th>Partidacontrol</th>
+    <th>Observacion</th>
+    <th>Parteobra</th>
+    <td>Acciones</td>    
+  </tr>
+
+<% @materiales.each do |materiale| %>
+  <tr>
+    <td><%= materiale.id %></td>
+    <td><%= materiale.descripcion %></td>
+    <td><%= materiale.unidad %></td>
+    <td><%= materiale.cantidad %></td>
+    <td></td>
+    <td><%= materiale.observacion %></td>
+    <td><%= materiale.parteobra_id %></td>
+    <td>
+        <%= link_to raw('<i class="icon-eye-open"></i>'), materiale, :class => "btn btn-small" %>
+        <%= link_to raw('<i class="icon-edit"></i>'), edit_materiale_path(materiale), :class => "btn btn-small" %>
+        <%= link_to raw('<i class="icon-trash"></i>'), materiale, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

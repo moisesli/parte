@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Codigo:</b>
+  <%= @subsectore.codigo %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @subsectore.descripcion %>
+</p>
+
+<p>
+  <b>Sectore:</b>
+  <%= @subsectore.sectore_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_subsectore_path(@subsectore) %> |
+<%= link_to 'Back', subsectores_path %>

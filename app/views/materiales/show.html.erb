@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @materiale.descripcion %>
+</p>
+
+<p>
+  <b>Unidad:</b>
+  <%= @materiale.unidad %>
+</p>
+
+<p>
+  <b>Cantidad:</b>
+  <%= @materiale.cantidad %>
+</p>
+
+<p>
+  <b>Partidacontrol:</b>
+  <%= @materiale.partidacontrol %>
+</p>
+
+<p>
+  <b>Observacion:</b>
+  <%= @materiale.observacion %>
+</p>
+
+<p>
+  <b>Parteobra:</b>
+  <%= @materiale.parteobra_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_materiale_path(@materiale) %> |
+<%= link_to 'Back', materiales_path %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+	<h1>Informacion Partida</h1>
+
+</div>
+
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>Partida #ID :</th>
+		<td><%= @lista.id %></td>
+	</tr>
+	<tr>
+		<th>Nombre Partida :</th>
+		<td><%= @lista.nombre %></td>
+	</tr>
+	<tr>
+		<th>Fecha de Creacion :</th>
+		<td><%= @lista.created_at %></td>
+	</tr>
+	<tr>
+		<th>Fecha de Actualizacion :</th>
+		<td><%= @lista.updated_at %></td>
+	</tr>
+</table>
+
+<div class="form-actions">
+	<%= link_to raw('<i class="icon-edit icon-white"></i> Edit'), edit_lista_path(@lista), :class => "btn btn-primary" %>
+	<%= link_to raw('<i class="icon-arrow-left icon-white"></i> Regresar'), listas_path, :class => "btn btn-primary" %>	
+</div>
+

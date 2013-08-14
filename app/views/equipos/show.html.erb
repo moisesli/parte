@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @equipo.descripcion %>
+</p>
+
+<p>
+  <b>Unidad:</b>
+  <%= @equipo.unidad %>
+</p>
+
+<p>
+  <b>Cantidad:</b>
+  <%= @equipo.cantidad %>
+</p>
+
+<p>
+  <b>Numeroparte:</b>
+  <%= @equipo.numeroparte %>
+</p>
+
+<p>
+  <b>Partidacontrol:</b>
+  <%= @equipo.partidacontrol %>
+</p>
+
+<p>
+  <b>Observacion:</b>
+  <%= @equipo.observacion %>
+</p>
+
+<p>
+  <b>Parteobra:</b>
+  <%= @equipo.parteobra_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_equipo_path(@equipo) %> |
+<%= link_to 'Back', equipos_path %>

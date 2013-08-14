@@ -1,0 +1,38 @@
+<%= form_for(@lista, :html => {:class => "form-horizontal"}) do |f| %>
+  <% if @lista.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lista.errors.count, "error") %> prohibited this lista from being saved:</h2>
+
+      <ul>
+      <% @lista.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="control-group">
+    <div class="control-label">    
+      <%= f.label :Tipo %>
+    </div>    
+    <div class="controls">
+            <%= f.select :listacategoria_id, Listacategoria.all.collect { |x| [x.nombre, x.id] }, {}, :style => "width: 300px;" %>  
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="control-label">
+      <%= f.label :nombre_de_partida %>  
+    </div>
+    <div class="controls">
+      <%= f.text_field :nombre, :class => "span6" %>  
+    </div>    
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit :class => "btn" %>  
+    </div>    
+  </div>
+<% end %>

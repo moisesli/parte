@@ -1,0 +1,49 @@
+<%= form_for(@partida) do |f| %>
+  <% if @partida.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@partida.errors.count, "error") %> prohibited this partida from being saved:</h2>
+
+      <ul>
+      <% @partida.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :diametro %><br />
+    <%= f.text_field :diametro %>
+  </div>
+  <div class="field">
+    <%= f.label :serieclase %><br />
+    <%= f.text_field :serieclase %>
+  </div>
+  <div class="field">
+    <%= f.label :profundidad %><br />
+    <%= f.text_field :profundidad %>
+  </div>
+  <div class="field">
+    <%= f.label :unidad %><br />
+    <%= f.text_field :unidad %>
+  </div>
+  <div class="field">
+    <%= f.label :metrado %><br />
+    <%= f.text_field :metrado %>
+  </div>
+  <div class="field">
+    <%= f.label :observacion %><br />
+    <%= f.text_field :observacion %>
+  </div>
+  <div class="field">
+    <%= f.label :parteobra_id %><br />
+    <%= f.number_field :parteobra_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

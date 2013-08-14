@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @partida.nombre %>
+</p>
+
+<p>
+  <b>Diametro:</b>
+  <%= @partida.diametro %>
+</p>
+
+<p>
+  <b>Serieclase:</b>
+  <%= @partida.serieclase %>
+</p>
+
+<p>
+  <b>Profundidad:</b>
+  <%= @partida.profundidad %>
+</p>
+
+<p>
+  <b>Unidad:</b>
+  <%= @partida.unidad %>
+</p>
+
+<p>
+  <b>Metrado:</b>
+  <%= @partida.metrado %>
+</p>
+
+<p>
+  <b>Observacion:</b>
+  <%= @partida.observacion %>
+</p>
+
+<p>
+  <b>Parteobra:</b>
+  <%= @partida.parteobra_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_partida_path(@partida) %> |
+<%= link_to 'Back', partidas_path %>

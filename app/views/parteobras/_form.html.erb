@@ -1,0 +1,122 @@
+<%= form_for(@parteobra) do |f| %>    
+    <% if @parteobra.errors.any? %>    
+          <h2><%= pluralize(@parteobra.errors.count, "error") %> prohibited this parteobra from being saved:</h2>
+          <ul>
+          <% @parteobra.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>    
+    <% end %>
+        <div class="controls controls-row">
+            <%= f.text_field :numeroparte, :placeholder => "Numero Parte", :class => "span1" %>
+            <%= f.text_field :frente, :placeholder => "Frente :", :class => "span2" %>      
+            <%= f.text_field :jefefrente, :class => "span3", :placeholder => "Jefe de Frente :" %> 
+            <%= f.select(:casa, [                                  
+                                  ['Casa', 'casa'],
+                                  ['Sub Contratista', 'subcontratista']
+                              ], {:include_blank => "Ejecutor"}, {:class=> "span2"})
+            %>             
+            <%= f.text_field :maestrodeobra, :class => "span2", :placeholder => "Maestro de Obra :" %>
+            <%= f.grouped_collection_select(:subsectore_id, @sectores, :subsectores, :descripcion, :id, :descripcion, { :include_blank => "Subsector"}, :class => "span2") %>
+        </div>
+        <div class="controls controls-row">                  
+         <%= f.date_select :fechaingreso, :class => "span4" %>         
+        </div>   
+    <br>
+<hr />
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li><a href="#produccion" data-toggle="tab"><h5>Produccion</h5></b></a></li>
+    <li class="active"><a href="#subcontratos" data-toggle="tab"><h5>Sub Contratos</h5></a></li>
+    <li><a href="#materiales" data-toggle="tab"><h5>Materiales</h5></a></li>
+    <li><a href="#equipos" data-toggle="tab"><h5>Equipos</h5></a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane" id="produccion">
+      <% i = 1 %>        
+        <%= f.fields_for :partidas do |fp| %>  
+          <div class="controls">     
+          <%= fp.grouped_collection_select(:nombre, @listacategorias, :listas, :nombre, :nombre, :nombre, { :include_blank => "#{"%02d" % i}.- Seleccione Partida"}, {:class => "span4"}) %>
+          <%= fp.text_field :serieclase, :class => "span1", :placeholder => "Serie" %>
+          <%= fp.text_field :profundidad, :class => "span1", :placeholder => "Profundidad" %>          
+          <%= fp.select(:unidad, [                    
+                    ['M', 'M'],
+                    ['UND','UND'],
+                    ['M2','M2'],
+                    ['M3','M3']
+            ], {:include_blank => "Und"}, { :class => 'span1' }) %>          
+          
+          <%= fp.text_field :metrado, :class => "span1", :placeholder => "Metrado" %>
+          <%= fp.text_field :observacion, :class => "span2", :placeholder => "Observacion" %>
+          <%  if params['action'] == 'edit' %>
+            <%= fp.check_box :_destroy %>
+          <% end %>                                 
+        <% i = i + 1 %>
+        </div>
+        <% end %>      
+    </div>
+    <div class="tab-pane active" id="subcontratos">
+      <% i = 1 %>    
+        <%= f.fields_for :descompociciones do |fd| %>          
+          <%= fd.text_field :descripcion, :class => "span4", :placeholder => "#{"%02d" % i}.- Sub Contrato Descripcion " %>          
+          <%= fd.select(:unidad, [                    
+                    ['M', 'M'],
+                    ['UND','UND'],
+                    ['M2','M2'],
+                    ['M3','M3']
+              ], {:include_blank => "Unidad"}, { :class => 'span2' }) %>  
+          <%= fd.text_field :cantidad, :class => "span1", :placeholder => "Cantidad" %>          
+          <%= fd.select(:terreno, [                    
+                    ['Normal', 'normal'],
+                    ['Rocoso','rocoso'],
+                    ['Arsilloso','arsilloso']                  
+              ], {:include_blank => "Terreno"}, { :class => 'span2' }) %>                    
+          <%= fd.text_field :cantidadvales, :class => "span1", :placeholder => "Vale" %>
+          <%= fd.text_field :observacion, :class => "span2", :placeholder => "Observacion" %>
+          <% if params['action'] == 'edit' %>
+            <%= fd.check_box :_destroy %>
+          <% end %>                
+        <% i = i + 1 %>
+        <% end %>         
+    </div>
+    <div class="tab-pane" id="materiales">
+      <% i = 1 %>      
+        <%= f.fields_for :materiales do |fm| %>                
+          <%= fm.text_field :descripcion, :class => "span4", :placeholder => "#{"%02d" % i}.- Material Descripcion" %>
+          <%= fm.text_field :unidad, :class => "span1", :placeholder => "Unidad" %>
+          <%= fm.text_field :cantidad, :class => "span1", :placeholder => "Cantidad" %>
+          <%= fm.select :partidasdecontrol_id, Partidasdecontrol.all.collect { |x| [x.subfase.descripcion, x.id]}, {:include_blank => "Seleccione"}, {:class => "span3"} %>
+          <%= fm.text_field :observacion, :class => "span3", :placeholder => "Observaciones" %>
+          <% if params['action'] == 'edit' %>
+            <%= fm.check_box :_destroy %>
+          <% end %>        
+        <% i = i +1 %>
+        <% end %>       
+    </div>
+
+    <div class="tab-pane" id="equipos">   
+      <% i = 1 %>   
+      <%= f.fields_for :equipos do |fe| %>
+        <%= fe.text_field :descripcion, :class => "span4", :placeholder => "#{"%02d" % i}.- Equipo Descripcion" %>
+        <%= fe.text_field :unidad, :class => "span1", :placeholder => "Unidad" %>
+        <%= fe.text_field :cantidad, :class => "span1", :placeholder => "Cantidad" %>
+        <%= fe.text_field :numeroparte, :class => "span1", :placeholder => "#Parte" %>
+        <%= fe.select :partidasdecontrol_id, Partidasdecontrol.all.collect { |x| [x.subfase.descripcion, x.id]}, {:include_blank => "Seleccione"} %>      
+        <%= fe.text_field :observacion, :class => "span3", :placeholder => "Equipo Observacion" %>
+        <%  if params['action'] == 'edit' %>
+          <%= fe.check_box :_destroy %>
+        <% end %>      
+        <% i = i + 1 %>
+        <br>
+      <% end %>          
+      </div>
+  </div>
+</div>
+
+
+<div class="actions">
+  <%= f.submit :class => "btn" %>
+</div>                        
+
+<% end %>

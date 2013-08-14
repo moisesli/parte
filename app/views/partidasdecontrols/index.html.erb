@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h1>Partidas de Control</h1>
+</div>
+
+<table class="table table-striped table-bordered table-condensed" >
+  <tr>
+    <th>#id</th>
+    <th>Codigo</th>
+    <th>Sector</th>
+    <th>Cod</th>
+    <th>Subsector</th>
+    <th>Cod</th>
+    <th>Fase</th>
+    <th>Cod</th>
+    <th>Subfase</th>    
+    <th>Acciones</th>    
+  </tr>
+
+<% @partidasdecontrols.each do |partidasdecontrol| %> 
+  <tr style="font-size: 12px;">
+    <td><%= partidasdecontrol.id %></td>
+    <td><%= partidasdecontrol.subsectore.sectore.codigo %></td>
+    <td><%= partidasdecontrol.subsectore.sectore.descripcion[0,15] %></td>
+    <td><%= partidasdecontrol.subsectore.codigo %></td>
+    <td><%= partidasdecontrol.subsectore.descripcion[0,30] %></td>
+    <td><%= partidasdecontrol.subfase.fase.codigo %></td>
+    <td><%= partidasdecontrol.subfase.fase.descripcion[0,30] %></td>
+    <td><%= partidasdecontrol.subfase.fase.codigo %><%= partidasdecontrol.subfase.codigo %></td>
+    <td><%= partidasdecontrol.subfase.descripcion[0,30] %></td>    
+    <td>
+      <%= link_to raw('<i class="icon-eye-open"></i>'), partidasdecontrol, :class => "btn btn-small" %>
+      <%= link_to raw('<i class="icon-edit"></i>'), edit_partidasdecontrol_path(partidasdecontrol), :class => "btn btn-small" %>
+      <%= link_to raw('<i class="icon-trash"></i>'), partidasdecontrol, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<div class="form-actions">
+  <%= link_to raw('<i class="icon-user icon-white"></i> Nuevo'), new_partidasdecontrol_path, :class => "btn btn-primary" %>   
+</div>

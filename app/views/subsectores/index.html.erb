@@ -1,0 +1,40 @@
+<ul class="breadcrumb">
+  <li><%= link_to "Partidas de Control", partidasdecontrols_path %> <span class="divider">/</span></li>  
+  <li class="active">Sub Sectores</li>
+</ul>
+
+<div class="page-header">
+  <h1>Lista de Subsectores</h1>
+</div>
+
+<!-- esto es un comentario creado con vim esto es un segundo comentario con vim  -->
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th>#id</th>
+    <th>Codigo</th>
+    <th>Descripcion</th>
+    <th>Sectore</th>
+    <th>Acciones</th>
+  </tr>
+
+<% @subsectores.each do |subsectore| %>
+  <tr>
+    <td><%= subsectore.id %></td>
+    <td><%= subsectore.codigo %></td>
+    <td><%= subsectore.descripcion %></td>
+    <td><%= subsectore.sectore.descripcion %></td>
+    <td>
+      <%= link_to raw('<i class="icon-eye-open"></i>'), subsectore, :class => "btn btn-small" %>
+      <%= link_to raw('<i class="icon-edit"></i>'), edit_subsectore_path(subsectore), :class => "btn btn-small" %>
+      <%= link_to raw('<i class="icon-trash"></i>'), subsectore, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<div class="form-actions">
+  <%= link_to raw('<i class="icon-user icon-white"></i> Nuevo'), new_subsectore_path, :class => "btn btn-primary" %>
+  <%= link_to raw('<i class="icon-user icon-white"></i> Tipos Sectores'), sectores_path, :class => "btn btn-primary" %>
+</div>

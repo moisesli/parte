@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Codigo:</b>
+  <%= @subfase.codigo %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @subfase.descripcion %>
+</p>
+
+<p>
+  <b>Fase:</b>
+  <%= @subfase.fase_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_subfase_path(@subfase) %> |
+<%= link_to 'Back', subfases_path %>
